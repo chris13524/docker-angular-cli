@@ -1,0 +1,18 @@
+services:
+  - docker
+
+script:
+  - docker build --build-arg VERSION=$VERSION -t chris13524/angular-cli:$VERSION .
+
+deploy:
+  provider: script
+  script: bash travis_dockerpush.sh
+  on:
+    branch: master
+  skip_cleanup: true
+
+env:
+  global:
+    - VERSION=6.2.3
+    - DOCKER_USERNAME=chris13524
+    - secure: haJ8S8CSEHtTabjW243m/MVN998U/pfWhRsEIXeOihf8iGVRrxYrQcSDqv5vuSJIBvyqlfp650ZU6ACQLu3kB9bwOhi5ZdZfSUbwCtKwHB3ui1Mv/H9MloUi0h2+EyV8SuFwEJYP760k6Xppu6hu8HZd2Boots6kgMuR6EF82OamUoZO8pZurwbVM5UVb1ySVSd6Y4WX/GWL/DGZDXtFTeZ78qdFQ6hH4cCzmDigh0YFyRgvhblGbgXqDuW3GFBcUxcX2PbJXDkmUZthC02mkSOAvM5jzs4uk33qEkRpxr4P1u3Pf7js9IGXokqQsUFDIAkNoQADKlX+axANGbTXFXOtStbLzYXM3pLlqMDeEKCOmLbzkR8FZ6CGAzgfjV1gEMkxW0+zpWFHp5HpzGUZrqTceckl+DRyGjDoCsMFqjv9mKLyyLPkWp/e7MkohkF87n8Jp9IOHzWfD1iwdVuDNMCeHdyYN1PzszBsFVlfqGf4Ua1AyZPlQMAONzQ+lvkt8FgN/i/nm6LB3LvbMMeEvkCdhvdxzkS1kJFghN+zaqgzHkScCq6tk//w4P79B2a3ZFem0wsrgCfFDrw8PdnVmaYq9A+NwbCvk3jpLedQpidPjqal2sxO8riTR59AD8raydgVal7E8I+8fyxSan9GHuFu6Z3t8vqAYS5pL/JGtsY=
